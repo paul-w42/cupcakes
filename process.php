@@ -15,23 +15,37 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $flavor = $_POST['flavor'];
 
-    if (isset($flavor) && isset($_POST['name'])) {
-        echo "<h3>Thank You, " . $_POST['name'] . ", for your order!</h3>";
-        echo "order summary:<br>";
+    if ((isset($_POST['name'])) && strlen($_POST['name']) > 0) {
 
-        echo "<ul> ";
-        foreach($flavor as $selection) {
-            echo "<li> $selection</li>";
+        if (!isset($_POST['flavor']) || (sizeof($_POST['flavor']) < 2)) {
+            echo "Please select at least 2 flavors.  Thank You.";
+        } else {
+
+            $flavor = $_POST['flavor'];
+
+            echo "<h3>Thank You, " . $_POST['name'] . ", for your order!</h3>";
+            echo "order summary:<br>";
+
+            echo "<ul> ";
+            foreach($flavor as $selection) {
+                echo "<li> $selection</li>";
+            }
+
+            echo "</ul>";
+
+            echo "<br>Order Total: $";
+
+            $cost = sizeof($flavor) * 3.5;
+            $sCost = number_format($cost, 2, '.', ',');
+
+            echo $sCost;
+
         }
-
-        echo "<br>Order Total: $";
-        $cost = sizeof($flavor) * 3.5;
-
-        echo $cost;
-
+    } else {
+        echo "Please enter your name.  Thank You!";
     }
+
 ?>
 </body>
 </html>
