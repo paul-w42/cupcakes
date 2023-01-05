@@ -9,16 +9,27 @@
 </head>
 <body>
 <?php
-    if (isset($_POST['flavor']) && isset($_POST['name'])) {
+
+    // DISPLAY CODE ERRORS!
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    $flavor = $_POST['flavor'];
+
+    if (isset($flavor) && isset($_POST['name'])) {
         echo "<h3>Thank You, " . $_POST['name'] . ", for your order!</h3>";
         echo "order summary:<br>";
 
         echo "<ul> ";
-        foreach($_POST['flavor'] as $selection) {
+        foreach($flavor as $selection) {
             echo "<li> $selection</li>";
         }
 
-        echo "<br>Order Total: ";
+        echo "<br>Order Total: $";
+        $cost = sizeof($flavor) * 3.5;
+
+        echo $cost;
 
     }
 ?>
